@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,9 +29,125 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
-
-        }
+        setContent { Punto1_Taller() }
     }
 }
 
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun Punto1_Taller() {
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(14.dp),
+            border = BorderStroke(1.dp, Color(0xFFE0E0E0)),
+            colors = CardDefaults.cardColors(containerColor = Color.White),
+            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+        ) {
+            Column(modifier = Modifier.fillMaxWidth()) {
+
+                Box(modifier = Modifier.fillMaxWidth()) {
+
+                    Image(
+                        painter = painterResource(id = R.drawable.computador_img),
+                        contentDescription = "Producto",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(250.dp),
+                        contentScale = ContentScale.Crop
+                    )
+
+                    Icon(
+                        imageVector = Icons.Filled.Favorite,
+                        contentDescription = "Favorito",
+                        tint = Color(0xFFFFD400),
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .padding(16.dp)
+                            .size(22.dp)
+                    )
+                }
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                ) {
+
+                    Text(
+                        text = "Set Computador y Cpu",
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    Text(
+                        text = "$99.99",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF1DB954)
+                    )
+
+                    Divider(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp, bottom = 8.dp),
+                        color = Color(0xFFE0E0E0),
+                        thickness = 1.dp
+                    )
+
+                    Text(
+                        text = "Potente computador de escritorio con alto rendimiento y diseño moderno.Ofreciendo rapidez, estabilidad y eficiencia en cada tarea.",
+                        fontSize = 14.sp,
+                        color = Color(0xFF555555)
+
+                    )
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+
+            Button(
+                onClick = { },
+                modifier = Modifier
+                    .weight(1f)
+                    .height(40.dp),
+                shape = RoundedCornerShape(20.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF7B1FA2)
+                )
+            ) {
+                Icon(Icons.Filled.Edit, contentDescription = "Editar", tint = Color.White)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("Editar", fontWeight = FontWeight.Bold, color = Color.White)
+            }
+
+            Button(
+                onClick = { },
+                modifier = Modifier
+                    .weight(1f)
+                    .height(40.dp),
+                shape = RoundedCornerShape(20.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFE53935)
+                )
+            ) {
+                Icon(Icons.Filled.Delete, contentDescription = "Eliminar", tint = Color.White)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("Eliminar", fontWeight = FontWeight.Bold, color = Color.White)
+            }
+        }
+    }
+}
